@@ -37,43 +37,37 @@ yaitu transaction_id.</p>
   <summary> Klik untuk melihat Query </summary>
     <br>
  ```sql
-create table kf_tabel_analisa as 
-select 
-	ft.transaction_id, 
-      ft.date,
-      inv.branch_id,
-      kc.branch_name,
-      kc.kota,
-      kc.provinsi,
-      kc.rating as rating_cabang,
-      ft.customer_name,
-      pd.product_id,
-      inv.product_name,
-      pd.price as actual_price,
-      round(ft.discount_percentage*100)  as discount_percentage ,
-      case 
-      		when pd.price  <= 50000 then '10%'
-      		when pd.price  between  50000 and 100000 then '15%'
-      		when pd.price  between  100000 and 300000 then '20%'
-      		when pd.price  between  300000 and 500000 then '25%'
-      		when pd.price  > 500000 then '30%' 
-      end as presentase_gross_laba,
-      round(pd.price  - (pd.price * ft.discount_percentage)) as nett_sales,
-      round(pd.price - (pd.price  - (pd.price * ft.discount_percentage))) nett_profit
-from  
-	  kf_final_transaction ft
-join  
-	  kf_inventory  inv 
-on 
-	  ft.branch_id = inv.branch_id
-join  
-	  kf_kantor_cabang kc
-on 
-	  inv.branch_id = kc.branch_id 
-join 
-	  kf_product pd 
-on
-	  pd.product_id = inv.product_id 
+SELECT 
+ft.transaction_id, 
+ft.date, 
+ft.branch_id,
+kc.branch_name, 
+kc.kota, 
+kc.provinsi, 
+kc.rating AS rating_cabang, 
+ft.customer_name, 
+ft.product_id, 
+p.product_name,
+p.price AS actual_price, 
+ft.discount_percentage, 
+CASE WHEN p.price <= 50000 THEN 0.1
+     WHEN p.price BETWEEN 50000 AND 100000 THEN 0.15
+     WHEN p.price BETWEEN 100000 AND 300000 THEN 0.2
+     WHEN p.price BETWEEN 300000 AND 500000 THEN 0.25
+     WHEN p.price <= 500000 THEN 0.3
+END AS persentase_gross_laba,
+(p.price * (1-ft.discount_percentage)) AS nett_sales, 
+(p.price * (CASE 
+               WHEN p.price <= 50000 THEN 0.1
+               WHEN p.price BETWEEN 50000 AND 100000 THEN 0.15
+               WHEN p.price BETWEEN 100000 AND 300000 THEN 0.2
+               WHEN p.price BETWEEN 300000 AND 500000 THEN 0.25
+               ELSE 0.3
+          END)) AS nett_profit,
+ft.rating AS rating_transaksi
+FROM kimia_farma.kf_final_transaction AS ft
+JOIN kimia_farma.kf_kantor_cabang AS kc ON ft.branch_id = kc.branch_id
+JOIN kimia_farma.kf_product As p ON ft.product_id = p.product_id
 ```
 <br>
 </details>
