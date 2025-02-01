@@ -37,6 +37,7 @@ yaitu transaction_id.</p>
   <summary> Klik untuk melihat Query </summary>
     <br>
  ```sql
+create table kf_tabel_analisa as 
 SELECT 
 ft.transaction_id, 
 ft.date, 
