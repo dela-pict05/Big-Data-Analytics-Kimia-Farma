@@ -83,10 +83,11 @@ JOIN kimia_farma.kf_product As p ON ft.product_id = p.product_id
 
 ---                                
 # **Data Vizualisation**
-[Klik untuk melihat hasil analisa di LookerStudio](https://lookerstudio.google.com/reporting/b4c9f280-8d2a-4510-bf21-c6ee7d5120e6)
+[Klik untuk melihat hasil analisa di LookerStudio]https://lookerstudio.google.com/reporting/96442304-a2f0-45f3-8c22-14dc7569fe95
 
 
-![Screenshot 2024-03-02 at 00 18 43](https://github.com/afifhibban21/Big-Data-Analytic-Performance-Analysis-Kimia-Farma/assets/117912771/d1733720-a815-42ea-b66b-81134ad892a9)
+![Screenshot 2025-02-02 120940](https://github.com/user-attachments/assets/6fb3706b-b5d6-456d-b03f-d0a5764b27f3)
+
 
    </kbd> <br> Gambar 2 — Performance Analysis Dashboard Kimia Farma
     
