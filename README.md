@@ -2,7 +2,7 @@
 
 Tool : BigQuery  <br>
 Visualization : Looker Data Studio  <br>
-Dataset : VIX Kimia Farma
+Dataset : Kimia Farma Dataset
 
 ---
 
